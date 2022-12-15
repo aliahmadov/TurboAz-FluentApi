@@ -1,0 +1,16 @@
+C:\Users\eliah\source\repos\TurboAz\TurboAz\bin\Debug\TurboAz.exe.config
+C:\Users\eliah\source\repos\TurboAz\TurboAz\bin\Debug\TurboAz.exe
+C:\Users\eliah\source\repos\TurboAz\TurboAz\bin\Debug\TurboAz.pdb
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.csproj.AssemblyReference.cache
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.csproj.SuggestedBindingRedirects.cache
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\Domain\Views\MainWindow.g.cs
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\App.g.cs
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz_MarkupCompile.cache
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz_MarkupCompile.lref
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\Domain\Views\MainWindow.baml
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.g.resources
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.Properties.Resources.resources
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.csproj.GenerateResource.cache
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.csproj.CoreCompileInputs.cache
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.exe
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.pdb
