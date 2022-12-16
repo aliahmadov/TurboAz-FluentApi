@@ -16,13 +16,15 @@ namespace TurboAz.Domain.Entities.Mapping
 
             this.HasKey(m => m.Id);
 
+            this.Property(c => c.Id).HasColumnName("Id");
+
             this.Property(m => m.Name)
                 .IsRequired()
                 .HasMaxLength(30);
             this.Property(m => m.Name).HasColumnName("ModelName");
 
 
-            HasRequired(c => c.Car).WithRequiredPrincipal();
+            //HasRequired(c => c.Car).WithRequiredPrincipal();
 
         }
 

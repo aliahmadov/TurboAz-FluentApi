@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace TurboAz.Domain.Abstractions
 {
-    internal interface IUnitOfWork
+    public interface IUnitOfWork
     {
+        IBanTypeRepository BanTypeRepository { get; }
+
+        ICarRepository CarRepository { get; }
+
+        IColorRepository ColorRepository { get; }
+
+        IEnergyTypeRepository EnergyTypeRepository { get; }
+
+        IManufacturerRepository ManufacturerRepository { get; }
+
+        IModelRepository ModelRepository { get; }
+
+
     }
 }

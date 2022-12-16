@@ -13,6 +13,7 @@ namespace TurboAz.Domain.Entities
 
         public int Id { get; set; }
 
+        public string ImagePath { get; set; }
         public int ProductionYear { get; set; }
 
         public double Price { get; set; }
@@ -21,11 +22,7 @@ namespace TurboAz.Domain.Entities
 
         public int UsageDistance { get; set; }
         public int ColorId { get; set; }
-        public Color Color { get; set; }
-
-        public int ModelId { get; set; }
-        public Model Model { get; set; }
-
+        public CarColor Color { get; set; }
         public int EnergyTypeId { get; set; }
         public EnergyType EnergyType { get; set; }
 

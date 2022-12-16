@@ -14,3 +14,14 @@ C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.csproj.GenerateRes
 C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.csproj.CoreCompileInputs.cache
 C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.exe
 C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.pdb
+C:\Users\eliah\source\repos\TurboAz\TurboAz\bin\Debug\EntityFramework.dll
+C:\Users\eliah\source\repos\TurboAz\TurboAz\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\eliah\source\repos\TurboAz\TurboAz\bin\Debug\EntityFramework.xml
+C:\Users\eliah\source\repos\TurboAz\TurboAz\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.csproj.CopyComplete
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\TurboAz.Migrations.Init.resources
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\Domain\Views\CarDisplayUC.g.cs
+C:\Users\eliah\source\repos\TurboAz\TurboAz\obj\Debug\Domain\Views\CarDisplayUC.baml
+C:\Users\eliah\source\repos\TurboAz\TurboAz\bin\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\eliah\source\repos\TurboAz\TurboAz\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+C:\Users\eliah\source\repos\TurboAz\TurboAz\bin\Debug\Microsoft.Xaml.Behaviors.xml

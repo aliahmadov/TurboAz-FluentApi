@@ -15,6 +15,9 @@ namespace TurboAz.Domain.Entities.Mapping
 
             this.HasKey(c => c.Id);
 
+
+            this.Property(c => c.Id).HasColumnName("Id");
+
             this.Property(c => c.TypeName)
                 .HasMaxLength(30)
                 .IsRequired();

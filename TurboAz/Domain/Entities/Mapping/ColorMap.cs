@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace TurboAz.Domain.Entities.Mapping
 {
-    public class ColorMap:EntityTypeConfiguration<Color>
+    public class ColorMap:EntityTypeConfiguration<CarColor>
     {
         public ColorMap()
         {
             this.ToTable("Colors");
 
             this.HasKey(c => c.Id);
+
+            this.Property(c => c.Id).HasColumnName("Id");
 
             this.Property(c => c.ColorName)
                 .HasMaxLength(30)

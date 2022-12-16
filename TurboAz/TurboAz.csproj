@@ -44,6 +44,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -65,6 +68,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Domain\Views\CarDisplayUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Domain\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,21 +80,52 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="DataAccess\EFBanTypeRepository.cs" />
+    <Compile Include="DataAccess\EFCarRepository.cs" />
+    <Compile Include="DataAccess\EFColorRepository.cs" />
+    <Compile Include="DataAccess\EFEnergyTypeRepository.cs" />
+    <Compile Include="DataAccess\EFManufacturerRepository.cs" />
+    <Compile Include="DataAccess\EFModelRepository.cs" />
+    <Compile Include="DataAccess\EFUnitOfWork.cs" />
+    <Compile Include="DataAccess\MyContext.cs" />
+    <Compile Include="Domain\Abstractions\IBanTypeRepository.cs" />
+    <Compile Include="Domain\Abstractions\ICarRepository.cs" />
+    <Compile Include="Domain\Abstractions\IColorRepository.cs" />
+    <Compile Include="Domain\Abstractions\IEnergyTypeRepository.cs" />
+    <Compile Include="Domain\Abstractions\IManufacturerRepository.cs" />
+    <Compile Include="Domain\Abstractions\IModelRepository.cs" />
+    <Compile Include="Domain\Abstractions\IRepository.cs" />
+    <Compile Include="Domain\Abstractions\IUnitOfWork.cs" />
     <Compile Include="Domain\Entities\BanType.cs" />
     <Compile Include="Domain\Entities\Car.cs" />
-    <Compile Include="Domain\Entities\Color.cs" />
+    <Compile Include="Domain\Entities\CarColor.cs" />
     <Compile Include="Domain\Entities\EnergyType.cs" />
     <Compile Include="Domain\Entities\Manufacturer.cs" />
     <Compile Include="Domain\Entities\Mapping\BanTypeMap.cs" />
+    <Compile Include="Domain\Entities\Mapping\CarMap.cs" />
     <Compile Include="Domain\Entities\Mapping\ColorMap.cs" />
+    <Compile Include="Domain\Entities\Mapping\EnergyTypeMap.cs" />
+    <Compile Include="Domain\Entities\Mapping\ManufacturerMap.cs" />
     <Compile Include="Domain\Entities\Mapping\ModelMap.cs" />
     <Compile Include="Domain\Entities\Model.cs" />
+    <Compile Include="Domain\ViewModels\BaseViewModel.cs" />
+    <Compile Include="Domain\ViewModels\CarDisplayUCViewModel.cs" />
+    <Compile Include="Domain\ViewModels\MainViewModel.cs" />
+    <Compile Include="Domain\Views\CarDisplayUC.xaml.cs">
+      <DependentUpon>CarDisplayUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\202212161950355_Init.cs" />
+    <Compile Include="Migrations\202212161950355_Init.designer.cs">
+      <DependentUpon>202212161950355_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -101,6 +139,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202212161950355_Init.resx">
+      <DependentUpon>202212161950355_Init.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -115,11 +156,33 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="DataAccess\" />
-    <Folder Include="Domain\Abstractions\" />
     <Folder Include="Domain\Services\" />
-    <Folder Include="Domain\ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bentleyBlack.jpg" />
+    <Resource Include="Images\bugatti_yellow.jpg" />
+    <Resource Include="Images\camaroWhite.jpg" />
+    <Resource Include="Images\ferrariRed.jpg" />
+    <Resource Include="Images\ferrariWhite.jpg" />
+    <Resource Include="Images\jaguarRed.jpg" />
+    <Resource Include="Images\jeep.jpg" />
+    <Resource Include="Images\landCruiserWhite.jpg" />
+    <Resource Include="Images\lexus_gray.jpg" />
+    <Resource Include="Images\malibuRed.jpg" />
+    <Resource Include="Images\mercedesMaybach.jpg" />
+    <Resource Include="Images\mercedesSuvBlue.jpg" />
+    <Resource Include="Images\mercedesVan.jpg" />
+    <Resource Include="Images\porscheRed.jpg" />
+    <Resource Include="Images\rangeRover.jpg" />
+    <Resource Include="Images\Rover_black.jpg" />
+    <Resource Include="Images\teslaTruck.jpg" />
+    <Resource Include="Images\teslaYellow.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\mercedesMl.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\mercedes.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

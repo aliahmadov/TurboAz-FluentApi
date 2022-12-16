@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TurboAz.Domain.Entities;
 
 namespace TurboAz.Domain.Abstractions
 {
-    internal interface ICarRepository
+    public interface ICarRepository:IRepository<Car>
     {
+
+
     }
 }

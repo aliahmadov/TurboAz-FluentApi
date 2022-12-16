@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TurboAz.Domain.ViewModels;
 
 namespace TurboAz
 {
@@ -23,6 +24,10 @@ namespace TurboAz
         public MainWindow()
         {
             InitializeComponent();
+            this.WindowState = WindowState.Maximized;
+            var viewModel = new MainViewModel();
+            viewModel.WrapPanel = carWrapPanel;
+            this.DataContext = viewModel;
         }
     }
 }

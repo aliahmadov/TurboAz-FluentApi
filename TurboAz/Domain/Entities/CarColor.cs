@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TurboAz.Domain.Entities
 {
-    public class Color
+    public class CarColor
     {
 
         public int Id { get; set; }

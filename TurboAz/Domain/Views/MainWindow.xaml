@@ -3,10 +3,136 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TurboAz"
+        xmlns:local="clr-namespace:TurboAz" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.35*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Margin="10" FontSize="40" FontFamily="Comic Sans MS"
+                       Foreground="OrangeRed" FontWeight="DemiBold">Car Search</TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="20" Margin="5,0,10,0" >Color</TextBlock>
+                    <ComboBox Name="colorCmbx" Width="100" ItemsSource="{Binding Colors}">
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged" >
+                                <i:InvokeCommandAction Command="{Binding SelectedColorCommand}" CommandParameter="{Binding ElementName=colorCmbx,Path=SelectedItem}">
+
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </ComboBox>
+
+                    <TextBlock FontSize="20" Margin="5,0,10,0">BanType</TextBlock>
+                    <ComboBox Name="banCmbx" Width="100" ItemsSource="{Binding BanTypes}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged" >
+                                <i:InvokeCommandAction Command="{Binding SelectedBanCommand}" CommandParameter="{Binding ElementName=banCmbx,Path=SelectedItem}">
+
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </ComboBox>
+
+                    <TextBlock FontSize="20" Margin="5,0,10,0">Model</TextBlock>
+                    <ComboBox Name="modelCmbx" Width="100" ItemsSource="{Binding Models}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged" >
+                                <i:InvokeCommandAction Command="{Binding SelectedModelCommand}" CommandParameter="{Binding ElementName=modelCmbx,Path=SelectedItem}">
+
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+
+                    <TextBlock FontSize="20" Margin="5,0,10,0">Energy Type</TextBlock>
+                    <ComboBox Name="energyCmbx" Width="100" ItemsSource="{Binding EnergyTypes}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged" >
+                                <i:InvokeCommandAction Command="{Binding SelectedEnergyTypeCommand}" CommandParameter="{Binding ElementName=energyCmbx,Path=SelectedItem}">
+
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                <Border Margin="35,0,0,0" BorderBrush="Black" BorderThickness="1" Padding="5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="20" Margin="5,0,10,0">Min.Year</TextBlock>
+                        <TextBox Text="{Binding MinYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="55"></TextBox>
+
+                        <TextBlock FontSize="20" Margin="10,0,10,0">Max.Year</TextBlock>
+                        <TextBox Text="{Binding MaxYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="55"></TextBox>
+                    </StackPanel>
+                </Border>
+
+                <Border Margin="25,0,0,0" BorderBrush="Black" BorderThickness="1" Padding="5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="20" Margin="5,0,10,0">Min.Price</TextBlock>
+                        <TextBox Text="{Binding MinPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="55"></TextBox>
+
+                        <TextBlock FontSize="20" Margin="10,0,10,0">Max.Price</TextBlock>
+                        <TextBox Text="{Binding MaxPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="55"></TextBox>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Border Margin="25,0,0,0" BorderBrush="Black" BorderThickness="1" Padding="5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="20" Margin="5,0,10,0">Min.Distance</TextBlock>
+                        <TextBox Text="{Binding MinDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="55"></TextBox>
+
+                        <TextBlock FontSize="20" Margin="10,0,10,0">Max.Distance</TextBlock>
+                        <TextBox Text="{Binding MaxDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="55"></TextBox>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <StackPanel  Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Border BorderBrush="Black" BorderThickness="1">
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton Command="{Binding NewCommand}" VerticalContentAlignment="Center"  FontSize="20" Margin="5">New</RadioButton>
+                        <RadioButton Command="{Binding OldCommand}" VerticalContentAlignment="Center" FontSize="20" Margin="5">Old</RadioButton>
+                    </StackPanel>
+                </Border>
+               
+            </StackPanel>
+            <StackPanel Margin="10,20,10,10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Padding="15,5,15,5" Foreground="White" Background="OrangeRed" FontSize="20"
+                        FontWeight="DemiBold" Command="{Binding ShowCommand}">
+                    Show Cars
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10">
+                                
+                            </Setter>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+
+
+        <ScrollViewer Grid.Row="2">
+            <WrapPanel Name="carWrapPanel" HorizontalAlignment="Center">
+
+            </WrapPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
