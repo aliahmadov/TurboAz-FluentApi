@@ -78,6 +78,8 @@
     <Compile Include="Domain\Entities\Color.cs" />
     <Compile Include="Domain\Entities\EnergyType.cs" />
     <Compile Include="Domain\Entities\Manufacturer.cs" />
+    <Compile Include="Domain\Entities\Mapping\BanTypeMap.cs" />
+    <Compile Include="Domain\Entities\Mapping\ColorMap.cs" />
     <Compile Include="Domain\Entities\Mapping\ModelMap.cs" />
     <Compile Include="Domain\Entities\Model.cs" />
     <Compile Include="Domain\Views\MainWindow.xaml.cs">
