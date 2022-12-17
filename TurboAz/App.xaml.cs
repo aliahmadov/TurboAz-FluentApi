@@ -291,7 +291,7 @@ namespace TurboAz
                 var suv = new Car
                 {
                     ImagePath = "/Images/mercedesSuvBlue.jpg",
-                    BanTypeId = 3,
+                    BanTypeId = 2,
                     ColorId = 6,
                     IsOld = true,
                     Price = 35000,

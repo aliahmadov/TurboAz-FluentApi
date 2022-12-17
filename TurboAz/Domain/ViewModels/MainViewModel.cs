@@ -11,7 +11,7 @@ using TurboAz.Domain.Views;
 
 namespace TurboAz.Domain.ViewModels
 {
-    public class MainViewModel:BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
 
         private ObservableCollection<string> energyTypes;
@@ -19,7 +19,7 @@ namespace TurboAz.Domain.ViewModels
         public ObservableCollection<string> EnergyTypes
         {
             get { return energyTypes; }
-            set { energyTypes = value;OnPropertyChanged();  }
+            set { energyTypes = value; OnPropertyChanged(); }
         }
 
 
@@ -36,7 +36,7 @@ namespace TurboAz.Domain.ViewModels
         public ObservableCollection<string> Models
         {
             get { return models; }
-            set { models = value;OnPropertyChanged(); }
+            set { models = value; OnPropertyChanged(); }
         }
 
         private ObservableCollection<string> colors;
@@ -80,7 +80,7 @@ namespace TurboAz.Domain.ViewModels
         public int MinDistance
         {
             get { return minDistance; }
-            set { minDistance = value;OnPropertyChanged(); }
+            set { minDistance = value; OnPropertyChanged(); }
         }
 
 
@@ -101,7 +101,22 @@ namespace TurboAz.Domain.ViewModels
         }
 
 
-        public bool IsOld { get; set; }
+        private bool isOld;
+
+        public bool IsOld
+        {
+            get { return isOld; }
+            set { isOld = value; OnPropertyChanged(); }
+        }
+
+        private bool isNew;
+
+        public bool IsNew
+        {
+            get { return isNew; }
+            set { isNew = value; OnPropertyChanged(); }
+        }
+
 
         public RelayCommand NewCommand { get; set; }
 
@@ -114,84 +129,132 @@ namespace TurboAz.Domain.ViewModels
         public RelayCommand SelectedModelCommand { get; set; }
         public RelayCommand SelectedEnergyTypeCommand { get; set; }
 
+        public RelayCommand ClearCommand { get; set; }
 
 
-        public string SelectedColor { get; set; }
-        public string SelectedBan { get; set; }
-        public string SelectedModel { get; set; }
-        public string SelectedEnergyType { get; set; }
+        private string selectedColor;
+
+        public string SelectedColor
+        {
+            get { return selectedColor; }
+            set { selectedColor = value; OnPropertyChanged(); }
+        }
+
+        private string selectedBan;
+
+        public string SelectedBan
+        {
+            get { return selectedBan; }
+            set { selectedBan = value; OnPropertyChanged(); }
+        }
+
+        private string selectedModel;
+
+        public string SelectedModel
+        {
+            get { return selectedModel; }
+            set { selectedModel = value; OnPropertyChanged(); }
+        }
+
+        private string selectedEnergyType;
+
+        public string SelectedEnergyType
+        {
+            get { return selectedEnergyType; }
+            set { selectedEnergyType = value; OnPropertyChanged(); }
+        }
+
 
         public WrapPanel WrapPanel { get; set; }
         public MainViewModel()
         {
-            EnergyTypes = new ObservableCollection<string>( App.DB.EnergyTypeRepository.GetAll().Select(c=>c.TypeName));
-            Colors = new ObservableCollection<string>(App.DB.ColorRepository.GetAll().Select(c=>c.ColorName));
-            BanTypes = new ObservableCollection<string>(App.DB.BanTypeRepository.GetAll().Select(c=>c.TypeName));
-            Models = new ObservableCollection<string>(App.DB.ManufacturerRepository.GetAll().Select(c=>c.Name));
+            EnergyTypes = new ObservableCollection<string>(App.DB.EnergyTypeRepository.GetAll().Select(c => c.TypeName));
+            Colors = new ObservableCollection<string>(App.DB.ColorRepository.GetAll().Select(c => c.ColorName));
+            BanTypes = new ObservableCollection<string>(App.DB.BanTypeRepository.GetAll().Select(c => c.TypeName));
+            Models = new ObservableCollection<string>(App.DB.ManufacturerRepository.GetAll().Select(c => c.Name));
 
 
 
-            NewCommand = new RelayCommand(c =>
-            {
-                IsOld = false;
-           
-            });
+            //NewCommand = new RelayCommand(c =>
+            //{
+            //    IsOld = false;
 
-            OldCommand = new RelayCommand(c =>
-            {
-                IsOld = true;
-            });
+            //});
+
+            //OldCommand = new RelayCommand(c =>
+            //{
+            //    IsOld = true;
+            //});
 
             ShowCommand = new RelayCommand(c =>
             {
                 WrapPanel.Children.Clear();
-                var cars = App.DB.CarRepository
-                .GetAll()
-                .Where(d => d.Manufacturer.Name == SelectedModel)
-                .Where(d => d.BanType.TypeName == SelectedBan)
-                //.Where(d => d.EnergyType.TypeName == SelectedEnergyType)
-                .Where(d => d.Color.ColorName == SelectedColor)
-                //.Where(d => d.ProductionYear >= MinYear && d.ProductionYear <= MaxYear)
-                //.Where(d => d.Price >= MinPrice && d.Price <= MaxPrice)
-                //.Where(d => d.UsageDistance >= MinDistance && d.UsageDistance >= MaxDistance)
-                //.Where(d => d.IsOld == IsOld)
-                .ToList();
+                IEnumerable<Car> cars = App.DB.CarRepository.GetAll();
 
-                for (int i = 0; i < cars.Count; i++)
+                if (SelectedColor != null) cars = cars.Where(d => d.Color.ColorName == SelectedColor);
+
+                if (SelectedModel != null) cars = cars.Where(d => d.Manufacturer.Name == SelectedModel);
+
+                if (SelectedEnergyType != null) cars = cars.Where(d => d.EnergyType.TypeName == SelectedEnergyType);
+
+                if (SelectedBan != null) cars = cars.Where(d => d.BanType.TypeName == SelectedBan);
+
+                if (MinDistance >= 0 && MaxDistance != 0) cars.Where(d => d.UsageDistance >= MinDistance && d.UsageDistance <= MaxDistance);
+                if (MinYear >= 0 && MaxYear != 0) cars.Where(d => d.ProductionYear >= MinYear && d.ProductionYear <= MaxYear);
+                if (MinPrice >= 0 && MaxPrice != 0) cars.Where(d => d.Price >= MinPrice && d.Price <= MaxPrice);
+
+                if (isNew != false) cars.Where(d => d.IsOld == isNew);
+                if (isOld != false) cars.Where(d => d.IsOld == IsOld);
+
+                var filteredCars = cars.ToList();
+
+                //var cars = App.DB.CarRepository
+                //.GetAll()
+                //.Where(d => d.Manufacturer.Name == SelectedModel)
+                //.Where(d => d.BanType.TypeName == SelectedBan)
+                //.Where(d => d.EnergyType.TypeName == SelectedEnergyType)
+                //.Where(d => d.Color.ColorName == SelectedColor)
+                ////.Where(d => d.ProductionYear >= MinYear && d.ProductionYear <= MaxYear)
+                ////.Where(d => d.Price >= MinPrice && d.Price <= MaxPrice)
+                ////.Where(d => d.UsageDistance >= MinDistance && d.UsageDistance <= MaxDistance)
+                ////.Where(d => d.IsOld = d.IsOld == true ? IsOld : IsNew)
+                //.ToList();
+
+                for (int i = 0; i < filteredCars.Count; i++)
                 {
                     var uc = new CarDisplayUC();
                     var viewModel = new CarDisplayUCViewModel();
                     uc.DataContext = viewModel;
 
-                    viewModel.ImagePath = cars[i].ImagePath;
+                    viewModel.ImagePath = filteredCars[i].ImagePath;
                     uc.Margin = new System.Windows.Thickness(10, 40, 10, 10);
                     uc.Height = 300;
                     uc.Width = 250;
                     WrapPanel.Children.Add(uc);
                 }
-                
+
             });
 
 
 
-            SelectedColorCommand = new RelayCommand(c =>
-            {
-                SelectedColor = c as string;
-            });
 
-            SelectedBanCommand = new RelayCommand(c =>
-            {
-                SelectedBan = c as string;
-            });
 
-            SelectedModelCommand = new RelayCommand(c =>
+            ClearCommand = new RelayCommand(c =>
             {
-                SelectedModel = c as string;
-            });
+                SelectedBan = null;
+                SelectedModel = null;
+                SelectedEnergyType = null;
+                SelectedColor = null;
+                MinYear = 0;
+                MaxYear = 0;
+                MinDistance = 0;
+                MaxDistance = 0;
+                MinPrice = 0;
+                MaxPrice = 0;
+                IsNew = false;
+                IsOld = false;
+                WrapPanel.Children.Clear();
 
-            SelectedEnergyTypeCommand = new RelayCommand(c =>
-            {
-                SelectedEnergyType = c as string;
             });
 
         }

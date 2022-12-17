@@ -22,50 +22,27 @@
             <Border BorderBrush="Black" BorderThickness="1" Padding="10">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock FontSize="20" Margin="5,0,10,0" >Color</TextBlock>
-                    <ComboBox Name="colorCmbx" Width="100" ItemsSource="{Binding Colors}">
-
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged" >
-                                <i:InvokeCommandAction Command="{Binding SelectedColorCommand}" CommandParameter="{Binding ElementName=colorCmbx,Path=SelectedItem}">
-
-                                </i:InvokeCommandAction>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                    <ComboBox Name="colorCmbx" Width="100" ItemsSource="{Binding Colors}"
+                              SelectedItem="{Binding SelectedColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                     </ComboBox>
 
                     <TextBlock FontSize="20" Margin="5,0,10,0">BanType</TextBlock>
-                    <ComboBox Name="banCmbx" Width="100" ItemsSource="{Binding BanTypes}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged" >
-                                <i:InvokeCommandAction Command="{Binding SelectedBanCommand}" CommandParameter="{Binding ElementName=banCmbx,Path=SelectedItem}">
-
-                                </i:InvokeCommandAction>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-
+                    <ComboBox Name="banCmbx" Width="100" ItemsSource="{Binding BanTypes}"
+                              SelectedItem="{Binding SelectedBan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                       
                     </ComboBox>
 
                     <TextBlock FontSize="20" Margin="5,0,10,0">Model</TextBlock>
-                    <ComboBox Name="modelCmbx" Width="100" ItemsSource="{Binding Models}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged" >
-                                <i:InvokeCommandAction Command="{Binding SelectedModelCommand}" CommandParameter="{Binding ElementName=modelCmbx,Path=SelectedItem}">
-
-                                </i:InvokeCommandAction>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                    <ComboBox Name="modelCmbx" Width="100" ItemsSource="{Binding Models}"
+                              SelectedItem="{Binding SelectedModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                       
                     </ComboBox>
 
                     <TextBlock FontSize="20" Margin="5,0,10,0">Energy Type</TextBlock>
-                    <ComboBox Name="energyCmbx" Width="100" ItemsSource="{Binding EnergyTypes}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged" >
-                                <i:InvokeCommandAction Command="{Binding SelectedEnergyTypeCommand}" CommandParameter="{Binding ElementName=energyCmbx,Path=SelectedItem}">
-
-                                </i:InvokeCommandAction>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                    <ComboBox Name="energyCmbx" Width="100" ItemsSource="{Binding EnergyTypes}"
+                                SelectedItem="{Binding SelectedEnergyType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                     
                     </ComboBox>
                 </StackPanel>
             </Border>
@@ -107,13 +84,14 @@
             <StackPanel  Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Border BorderBrush="Black" BorderThickness="1">
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Command="{Binding NewCommand}" VerticalContentAlignment="Center"  FontSize="20" Margin="5">New</RadioButton>
-                        <RadioButton Command="{Binding OldCommand}" VerticalContentAlignment="Center" FontSize="20" Margin="5">Old</RadioButton>
+                        <RadioButton IsChecked="{Binding IsNew, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding NewCommand}" VerticalContentAlignment="Center"  FontSize="20" Margin="5">New</RadioButton>
+                        <RadioButton IsChecked="{Binding IsOld, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" FontSize="20" Margin="5">Old</RadioButton>
                     </StackPanel>
                 </Border>
                
             </StackPanel>
-            <StackPanel Margin="10,20,10,10" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Margin="10,20,10,10" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Orientation="Horizontal">
                 <Button Padding="15,5,15,5" Foreground="White" Background="OrangeRed" FontSize="20"
                         FontWeight="DemiBold" Command="{Binding ShowCommand}">
                     Show Cars
@@ -121,6 +99,18 @@
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10">
                                 
+                            </Setter>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button Padding="15,5,15,5" Foreground="White" Background="OrangeRed" FontSize="20"
+                        FontWeight="DemiBold" Command="{Binding ClearCommand}" Margin="10,0,0,0">
+                    Clear All
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10">
+
                             </Setter>
                         </Style>
                     </Button.Resources>
